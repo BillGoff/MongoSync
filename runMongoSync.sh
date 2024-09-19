@@ -120,12 +120,14 @@ echo "Starting MongoSync Service on port: "$mongoSyncPort
 echo $sourceUrl
 echo $destUrl
 
-if [ $supportOlderVersions == 'yes' ] || [ $supportOlderVersions == '1']; then
-	echo "MongoSync will support older verisons, starting MongoSync Service on port: " $mongoSyncPort
+if [ $supportOlderVersions == 'yes' ] || [ $supportOlderVersions == '1' ]; then
+	echo "MongoSync will support older verisons, starting MongoSync Service on port: "$mongoSyncPort
 	mongosync --port $mongoSyncPort --logPath $logPath --verbosity debug --enableFeatures supportOlderVersions --cluster0 $sourceUrl --cluster1 $destUrl
-elif [ $supportOlderVersions == 'no' ] || [ $supportOlderVersions == '2']; then
-	echo "MongoSync will only support version 6 and above, starting MongoSync Service on port: " $mongoSyncPort
+
+elif [ $supportOlderVersions == 'no' ] || [ $supportOlderVersions == '2' ]; then
+	echo "MongoSync will only support version 6 and above, starting MongoSync Service on port: "$mongoSyncPort
 	mongosync --port $mongoSyncPort --logPath $logPath --verbosity debug --cluster0 $sourceUrl --cluster1 $destUrl
+
 else
 	echo 'Unable to determine if you want to support older versions!'
 	exit 2
